@@ -1,0 +1,14 @@
+services:
+  backend-postino:
+    build: .
+    container_name: backend-postino
+    command: >
+      sh -c "python manage.py migrate &&
+             python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - ./:/app
+    ports:
+      - "8000:8000"
+    environment:
+      - SECRET_KEY=django-insecure-test-key-postino
+      - DEBUG=True

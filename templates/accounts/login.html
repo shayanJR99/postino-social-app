@@ -1,23 +1,24 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ورود به حساب کاربری</title>
+
     <link rel="stylesheet" href="../../static/css/login.css">
 </head>
+
 <body>
 
     <div class="login-card">
 
         <h1 class="title">خوش آمدید</h1>
-        <!-- <p class="eror-text" id="eror-text">حداقل کرکتر مجاز برای پسورد 7 کلمه است</p> -->
-        <!-- <p class="subtitle">برای ادامه وارد حساب خود شوید</p> -->
 
         <input
             class="input-text"
-            id="input-text"
-            type="text"
+            id="email"
+            type="email"
             placeholder="ایمیل خود را وارد کنید"
         >
 
@@ -28,11 +29,18 @@
             placeholder="رمز عبور"
         >
 
-        <button id="send" class="login-btn">
+        <button
+            id="send"
+            class="login-btn"
+            type="button"
+        >
             ورود
         </button>
 
     </div>
-<script src="../../static/js/login.js"></script>
+
+    <script src="../../static/js/login.js"></script>
+
 </body>
+
 </html>

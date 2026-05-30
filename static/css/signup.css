@@ -1,0 +1,104 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-family:sans-serif;
+       background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+
+}
+
+.login-card{
+    width:400px;
+    padding:30px;
+    border-radius:20px;
+
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(15px);
+    -webkit-backdrop-filter:blur(15px);
+
+    border:1px solid rgba(255,255,255,0.15);
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+.title{
+    color:white;
+    margin-bottom:10px;
+}
+
+.subtitle{
+    color:rgba(255,255,255,.8);
+    margin-bottom:25px;
+}
+
+form{
+    width:100%;
+    display:flex;
+    flex-direction:column;
+
+    /* فاصله بین همه اینپوت‌ها */
+    gap:18px;
+}
+
+.input-text{
+    width:100%;
+    padding:14px;
+
+    border:none;
+    outline:none;
+
+    color:white;
+    font-size:16px;
+
+    border-radius:12px;
+
+    background:rgba(255,255,255,0.12);
+
+    border:1px solid rgba(255,255,255,0.2);
+
+    backdrop-filter:blur(10px);
+    
+}
+
+.input-text::placeholder{
+    color:rgba(255,255,255,0.7);
+}
+
+.login-btn{
+    padding:14px;
+    border:none;
+    border-radius:12px;
+
+    cursor:pointer;
+
+    font-size:16px;
+    font-weight:bold;
+
+    background:white;
+    color:#2e2670;
+
+    transition:.3s;
+      color:white;
+    background:
+    linear-gradient(
+    135deg,
+    #00d4ff,
+    #0066ff);
+}
+
+.login-btn:hover{
+    transform:translateY(-2px);
+}
+#eror-text {
+    color: red;
+    margin-top: 20px;
+}

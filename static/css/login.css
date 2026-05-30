@@ -93,3 +93,7 @@ body{
     box-shadow:
     0 4px 10px rgba(0,140,255,.45);
 }
+#error-text {
+    color: red;
+    
+}

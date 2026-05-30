@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-=_g0=^$-tj7@d=abifr1-wpq)h@rgiif^s6in3j=d)df_8!-0#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -54,7 +54,7 @@ ROOT_URLCONF = 'core.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [ BASE_DIR / 'templates' ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -121,3 +121,14 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# static
+STATIC_URL = 'static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles' 
+STATICFILES_DIRS = [BASE_DIR / 'static']
+
+# media
+MEDIA_URL = 'media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+

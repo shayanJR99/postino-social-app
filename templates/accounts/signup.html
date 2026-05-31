@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ورود به حساب کاربری</title>
+    <title>ثبت نام</title>
     <link rel="stylesheet" href="../../static/css/signup.css">
-    
 </head>
 <body>
 
@@ -14,7 +13,7 @@
         <h1 class="title">خوش آمدید</h1>
         <p class="subtitle">برای ادامه حساب کاربری بسازید</p>
 
-        <form action="" method="post">
+        <form id="signup-form">
 
             <input
                 class="input-text"
@@ -25,7 +24,6 @@
 
             <input
                 class="input-text"
-                name="password1"
                 id="password1"
                 type="password"
                 placeholder="رمز عبور"
@@ -33,20 +31,20 @@
 
             <input
                 class="input-text"
-                name="password2"
                 id="password2"
                 type="password"
                 placeholder="تکرار رمز عبور"
             >
 
             <button type="submit" id="send" class="login-btn">
-                ورود
+                ثبت نام
             </button>
 
         </form>
 
     </div>
 
+    <script src="../../static/js/signup.js"></script>
+
 </body>
-<script src="../../static/js/signup.js"></script>
 </html>

@@ -6,24 +6,6 @@ body {
     direction: rtl;
  
 }
-.text-box {
-   background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);  
-  -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 15px;
-    color: #ffffff ;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 600px;
-    height: 200px;
-    margin: 100px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    
-}
 body{
   margin:0;
   height:100vh;
@@ -98,150 +80,30 @@ body{
 .menu-box{
     border: none;
 }
-#post-text {
-   background: rgba(167, 167, 167, 0.674);
-  backdrop-filter: blur(19px);  
-  -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.714);
-    border-radius: 5px;
-    width: 400px;
-    height: 30px;
+#posts-container{
+    width: 100%;
+    max-width: 700px;
+    margin: 30px auto;
+    margin-top: 180px;
 }
-textarea{
-    overflow: hidden;
-    resize: none;
+.post-card{
+    background:#1d1d1d;
+    border:1px solid #333;
+    border-radius:16px;
+    padding:20px;
+    color:white;
 }
-.glass-input{
-    width:400px;
-    min-height:60px;
-    max-height:90px;
-    padding:16px;
-    border:none;
-    outline:none;
-    color:#fff;
-    font-size:18px;
-    border-radius:20px;
-    background:rgba(255,255,255,0.12);
-    backdrop-filter:blur(15px);
-    -webkit-backdrop-filter:blur(15px);
-    border:1px solid rgba(255,255,255,0.2);
-    box-shadow:
-        0 8px 32px rgba(0,0,0,.2),
-        inset 0 1px 1px rgba(255,255,255,.2);
-    border-color:rgb(255, 255, 255);
-    box-shadow:
-        0 0 20px rgba(255,255,255,.2),
-        0 8px 32px rgba(0,0,0,.25); 
-    display: flex;
-    flex-direction: column;
-    margin-left : 40px
+.post-card .user-info{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:15px;
 }
-.glass-input::placeholder{
-    color:rgba(255,255,255,.7);
-}
-#send-post {
-  width: 50px;
-  height: 50px;
-  border-radius: 100%;
-    border:1px solid rgba(255,255,255,0.2);
-    box-shadow:
-        0 8px 32px rgba(0,0,0,.2),
-        inset 0 1px 1px rgba(255,255,255,.2);
-        margin-right:30px  ;
-
-}
-#send-post{
-    width:55px;
-    height:55px;
-    border:none;
+.post-card .profile-img{
+    width:50px;
+    height:50px;
     border-radius:50%;
-    cursor:pointer;
-    background: linear-gradient(#7c4dff , #855bf7);
-    transition:.3s;
 }
-#send-post:hover {
-    transform: scale(1.1);
-     box-shadow:0 0 25px rgba(124,77,255,.7);
-}
-#send-post img{
-    width:100%;
-    height:100%;
-    object-fit:contain;
-    display:block;
-}
-.user-card{
-    position: absolute;
-    top: 20px;
-    left: 20px;
-
-    width: 370px;
-    height: 80px;
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    padding: 0 18px;
-
-    border-radius: 22px;
-
-    background: rgba(255,255,255,.06);
-
-    backdrop-filter: blur(15px);
-
-    border: 1px solid rgba(255,255,255,.08);
-
-    box-shadow:
-    0 8px 25px rgba(0,0,0,.25);
-}
-
-.user-left{
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.avatar{
-    width: 55px;
-    height: 55px;
-
-    border-radius: 50%;
-    object-fit: cover;
-
-    border: 2px solid rgba(255,255,255,.15);
-}
-
-.user-id{
-    color: white;
-    font-size: 22px;
-    font-weight: 600;
-    margin-right: 130px;
-    direction: ltr;
-}
-
-.settings-btn{
-    width: 55px;
-    height: 55px;
-
-    border: none;
-    cursor: pointer;
-
-    border-radius: 50%;
-
-    background: rgba(255,255,255,.08);
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    transition: .3s;
-}
-.settings-icon{
-    width: 26px;
-    height: 26px;
-    object-fit: contain;
-}
-.settings-btn img {
-  scale: 3.1;
-  margin-top: 3px;
+.post-text{
+    line-height:1.8;
 }

@@ -7,14 +7,31 @@
     <link rel="stylesheet" href="../../static/css/style.css">
 </head>
 <body>
+<div class="user-card">
+
+    <div class="user-left">
+        <img  src="../../media/profile-Guest.png" class="avatar">
+
+        <span class="user-id">@Parham</span>
+    </div>
+
+    <button class="settings-btn">
+        <img src="../../media/profile-Guest.png" class="settings-icon">
+    </button>
+</div>
+</div>
     <div class="text-box">
            
-<button id="send-post" type="button"><img id="" src="ndlg.jpg" alt="send logo"></button>
+<button id="send-post" type="button"><img id="img-send" src="../../media/sendlogoicon.png" alt="send logo"></button>
 <textarea
     class="glass-input"
     placeholder="متن خود را بنویسید..."
     oninput="this.style.height='auto'; this.style.height=this.scrollHeight+'px';"
 ></textarea>
+<label class="settings-upload">
+        <input type="file" hidden>
+        <img src="images/settings.png" alt="" class="settings-avatar">
+    </label>
     </div>
 <input type="checkbox" id="menu-toggle">
 <label for="menu-toggle" class="menu-btn">

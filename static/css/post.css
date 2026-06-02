@@ -1,0 +1,173 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    min-height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    padding:20px;
+
+    background:linear-gradient(
+        135deg,
+        #0f0c29,
+        #302b63,
+        #24243e
+    );
+
+    font-family:sans-serif;
+}
+
+.text-box{
+
+    width:min(95%, 430px);
+
+    min-height:180px;
+
+    padding:20px;
+
+    background:rgba(255,255,255,.08);
+
+    backdrop-filter:blur(15px);
+    -webkit-backdrop-filter:blur(15px);
+
+    border:1px solid rgba(255,255,255,.25);
+
+    border-radius:20px;
+
+    box-shadow:
+        0 8px 32px rgba(0,0,0,.2),
+        inset 0 1px 0 rgba(255,255,255,.1);
+}
+
+.user-info{
+
+    display:flex;
+    align-items:center;
+
+    gap:12px;
+}
+
+.profile-img{
+
+    width:clamp(30px,8vw,40px);
+    height:clamp(30px,8vw,40px);
+
+    object-fit:cover;
+}
+
+.id{
+
+    color:white;
+
+    font-size:clamp(16px,4vw,20px);
+
+    font-weight:600;
+
+    direction:ltr;
+}
+
+.online{
+
+    width:10px;
+    height:10px;
+
+    background:#00ff66;
+
+    border-radius:50%;
+
+    display:inline-block;
+
+    margin-left:7px;
+
+    box-shadow:
+        0 0 10px #00ff66;
+}
+
+.thread-input{
+
+    width:100%;
+
+    min-height:80px;
+
+    margin-top:15px;
+
+    background:transparent;
+
+    border:none;
+    outline:none;
+
+    border-bottom:1px solid rgba(255,255,255,.15);
+
+    color:white;
+
+    font-size:clamp(14px,3vw,17px);
+
+    resize:none;
+
+    direction:rtl;
+
+    padding-bottom:10px;
+}
+
+.thread-input::placeholder{
+
+    color:rgba(255,255,255,.45);
+}
+
+.btn-box{
+
+    margin-top:20px;
+
+    display:flex;
+    justify-content:flex-start;
+}
+
+.send-btn{
+
+    width:clamp(75px,20vw,90px);
+    height:35px;
+
+    border:none;
+
+    border-radius:8px;
+
+    background:#8b5cf6;
+
+    color:white;
+
+    font-size:14px;
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+.send-btn:hover{
+
+    transform:scale(1.05);
+
+    box-shadow:
+        0 0 20px rgba(139,92,246,.6);
+}
+
+@media (max-width:480px){
+
+    .text-box{
+        width:100%;
+        padding:15px;
+    }
+
+    .user-info{
+        gap:8px;
+    }
+
+    .send-btn{
+        width:100%;
+    }
+}

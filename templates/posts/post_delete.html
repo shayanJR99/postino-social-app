@@ -1,0 +1,42 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete Post</title>
+    <link rel="stylesheet" href="{% static 'css/post_delete.css' %}">
+</head>
+
+<body>
+
+<div class="post">
+    <h2>{{ post.title }}</h2>
+    <p>{{ post.content }}</p>
+
+    <button id="openDelete">حذف پست</button>
+</div>
+
+<!-- فقط یک فرم واقعی برای حذف -->
+<form id="deleteForm"
+      method="post"
+      action="{% url 'posts:delete' post.pk %}">
+    {% csrf_token %}
+</form>
+
+<!-- Popup -->
+<div id="popup" class="popup hidden">
+    <div class="popup-box">
+        <h3>آیا مطمئن هستید؟</h3>
+
+        <div class="buttons">
+            <button id="confirmDelete" type="button">بله حذف کن</button>
+            <button id="cancelDelete" type="button">لغو</button>
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'js/post_delete.js' %}"></script>
+
+</body>
+</html>

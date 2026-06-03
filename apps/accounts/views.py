@@ -10,7 +10,7 @@ from .forms import SignupForm, LoginForm
 class LoginUser(FormView):
     template_name = "accounts/login.html"
     form_class = LoginForm
-    success_url = reverse_lazy("posts:home")
+    success_url = reverse_lazy("posts:postlist")
 
     def form_valid(self, form):
         login(self.request, form.get_user())

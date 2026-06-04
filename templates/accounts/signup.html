@@ -1,10 +1,11 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ثبت نام</title>
-    <link rel="stylesheet" href="../../static/css/signup.css">
+<link rel="stylesheet" href="{% static 'css/signup.css' %}">
 </head>
 <body>
 
@@ -13,29 +14,40 @@
         <h1 class="title">خوش آمدید</h1>
         <p class="subtitle">برای ادامه حساب کاربری بسازید</p>
 
-        <form id="signup-form">
+        <form id="signup-form" method="post" action="{% url 'accounts:signup' %}"autocomplete="off">
+            {% csrf_token %}
 
             <input
                 class="input-text"
                 id="email"
                 type="email"
+                name="email"
                 placeholder="ایمیل خود را وارد کنید"
-            >
-
+                >
+{% for error in form.email.errors %}
+    <p class="error-text">{{ error }}</p>
+{% endfor %}
             <input
                 class="input-text"
                 id="password1"
                 type="password"
+                name="password"
                 placeholder="رمز عبور"
             >
-
+{% for error in form.password1.errors %}
+    <p class="error-text">{{ error }}</p>
+{% endfor %}
             <input
                 class="input-text"
                 id="password2"
                 type="password"
+                name="confirm_password"
                 placeholder="تکرار رمز عبور"
             >
 
+{% for error in form.password2.errors %}
+    <p class="error-text">{{ error }}</p>
+{% endfor %}
             <button type="submit" id="send" class="login-btn">
                 ثبت نام
             </button>
@@ -44,7 +56,7 @@
 
     </div>
 
-    <script src="../../static/js/signup.js"></script>
+    <script src="{% static 'js/signup.js'%}"></script>
 
 </body>
 </html>

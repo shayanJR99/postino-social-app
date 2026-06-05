@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+
+    <link rel="stylesheet" href="{% static "css/my_profile.css" %}">
+
+</head>
+<body>
+    {% include "includes/sidebar.html" %}
+    <div class="profile-box">
+        <div class="profile-header">
+            {% if profile.image %}
+        <img src="{{  profile.image.url  }}" alt="Profile" class="profile-image">
+        {% endif %}
+        <div class="profile-info">
+        <h2 class="profile-name">{{profile.first_name}}</h2>
+        <p class="profile-id">@{{profile.username}}</p>
+        <p class="profile-bio">{{profile.description}}</p>
+        </div>
+        <button class="edit-btn">Edit Profile</button>
+        </div>
+        <div class="stats-box">
+        <div class="stat-item">
+        <h3>120</h3>
+        <p>Following</p>
+        </div>
+        <div class="stat-item">
+        <h3>{{ posts_count }}</h3>
+        <p>Posts</p>
+        </div>
+        <div class="stat-item">
+        <h3>580</h3>
+        <p>Followers</p>
+        </div>
+        </div>
+        </div>
+        <div class="posts-box">
+        <div class="posts-container"> 
+                    {% for post in posts %}
+            <div class="post" style="max-width:300px; max-height:300px">
+        <a h ref="{% url 'posts:detail' post.pk %}"  style="text-decoration:none;">
+
+                <p>{{ post.content }}</p>
+        </a>
+        <a h ref="{% url 'posts:detail' post.pk %}"  style="text-decoration:none;">
+            {% if post.image %}
+                <img src="{{ post.image.url }}">
+            {% endif %}
+        </a>
+        
+            <small>{{ post.created_at }}</small>
+            </div>
+        </a>
+        {% empty %}
+            <p>این کاربر هنوز پستی منتشر نکرده است.</p>
+        {% endfor %}
+
+        </div>
+</body>
+</html>

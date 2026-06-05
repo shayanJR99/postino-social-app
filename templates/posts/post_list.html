@@ -9,13 +9,7 @@
 </head>
 <body>
 
-<div class="sidebar">
-    <a href="post" class="sidebar-item">Home</a>
-    <a href="create" class="sidebar-item">Posts</a>
-    <a href="#" class="sidebar-item">Profile</a>
-    <a href="#" class="sidebar-item">Settings</a>
-    <button type="button" class="logout-btn" id="logoutBtn">Logout</button>
-</div>
+{% include "includes/sidebar.html" %}
 <div id="posts-container">
     {% for post in posts %}
     <div class="post">
@@ -24,21 +18,27 @@
     <div class="gallery-item">
     <img src="{{ post.image.url }}" alt="post image">
     </div>
-            {% else %}
-    <div class="gallery-item">
-    <img src="{% static 'images/default-post.png' %}" alt="post image">
-    </div>
+
             {% endif %}
   
     </div>
     <div class="post-header">
-    <div class="post-user">
-    <img src="{% static 'images/profile_Guest.png' %}" class="profile-image" alt="profile">
-    <div class="user-data">
-    <h3>{{ post.author }}</h3>
-    <span>@{{ post.author }}</span>
-    </div>
-    </div>
+        <div class="post-user">
+            {% if post.author.image %}
+                <img src='{{ post.author.image.url }}' class="profile-image" alt="profile">
+            {% endif %}
+            
+            <div class="user-data">
+<a href="{% url 'profiles:profile' post.author.username %}'" class="username-link">
+                <h3>{{ post.author }}</h3>
+                </a>
+<a href="{% url 'profiles:profile' post.author.username %}" class="username-link">
+                <span>@{{ post.author.username  }}</span>
+                </a>
+
+            </div>
+
+        </div>
     <form method="post" action="#">
                 {% csrf_token %}
     <button type="submit" class="follow-btn">Follow<span class="follow-count">1.2K</span>
@@ -59,14 +59,14 @@
     <form method="post" action="#" >
                 {% csrf_token %}
     <button type="submit" class="action-btn">
-    <img src="../../media/comment.png" class="action-icon" alt="comment">
+    <img src="/media/comment.png" class="action-icon" alt="comment">
     <span>42</span>
     </button>
     </form>
-    <form method="post" action="#" class="detail">
+    <form method="get" action="{% url 'posts:detail' post.pk %}" class="detail">
                 {% csrf_token %}
     <button type="submit" class="action-btn detail" >
-    <img src="../../media/details.png" class="action-icon" alt="details">
+    <img src="/media/details.png" class="action-icon" alt="details">
     <span>details</span>
     </a>
         </div>
@@ -75,20 +75,6 @@
 </div>
 </form>
 <form method="post" action="#"></form>
-<div class="logout-modal" id="logoutModal">
-    <div class="logout-box">
-    <h3>خروج از حساب</h3>
-    <p>آیا مطمئن هستید؟</p>
-    <div class="logout-actions">
-    <button type="button" class="cancel-btn" id="cancelBtn">Cancel</button>
-    <form method="post" action="{% url 'accounts:logout' %}">
-                {% csrf_token %}
-    <button type="submit" class="confirm-btn">Logout</button>
-    </form>
-    </div>
-    </div>
-    </div>
-
 <script src="{% static 'js/post_list.js' %}"></script>
 
 </body>

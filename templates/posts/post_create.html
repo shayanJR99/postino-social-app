@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="{% static 'css/post.css' %}">
 </head>
 <body>
-
+{% include "includes/sidebar.html" %}
 <form class="text-box"
       action="{% url 'posts:postcreate' %}"
       method="post"

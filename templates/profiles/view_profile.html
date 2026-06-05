@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+
+    <link rel="stylesheet" href="{% static "css/view_profile.css" %}">
+</head>
+<body>
+    {% include "includes/sidebar.html" %}
+    <div class="profile-box">
+        <div class="profile-header">
+        <img src="{{ profile.image.url }}" alt="Profile" class="profile-image">
+        <div class="profile-info">
+        <h4 class="profile-name">{{profile.first_name}} {{profile.last_name}}</h4>
+        <p class="profile-id">{{profile.username}}</p>
+        <p class="profile-bio">{{profile.description}}</p>
+        </div>
+        <form action="" method="post">
+        <button class="follow-btn" type="submit">follow</button>
+        </form>
+        </div>
+        <div class="stats-box">
+        <div class="stat-item">
+        <h3>120</h3>
+        <p>Following</p>
+        </div>
+        <div class="stat-item">
+        <h3>{{ posts_count }}</h3>
+        <p>Posts</p>
+        </div>
+        <div class="stat-item">
+        <h3>580</h3>
+        <p>Followers</p>
+        </div>
+        </div>
+        </div>
+        <div class="posts-box">
+        <div class="posts-container">
+        {% for post in posts %}
+        <a h ref="{% url 'posts:detail' post.id %}" class="post-link" style="text-decoration:none;">
+            <div class="post" style="max-width:300px; max-height:300px">
+                <p>{{ post.content }}</p>
+
+            {% if post.image %}
+                <img src="{{ post.image.url }}">
+            {% endif %}
+
+            <small>{{ post.created_at }}</small>
+            </div>
+            </a>
+        {% empty %}
+            <p>این کاربر هنوز پستی منتشر نکرده است.</p>
+        {% endfor %}
+
+
+        </div>
+        </div>
+</body>
+</html>

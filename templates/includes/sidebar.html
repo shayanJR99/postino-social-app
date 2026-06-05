@@ -1,0 +1,27 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+<div class="sidebar" dir="ltr">
+    <a href="{% url 'posts:postlist' %}" class="sidebar-item">Home</a>
+    <a href="{% url 'posts:postcreate' %}" class="sidebar-item">create post</a>
+    <a href="{% url 'profiles:my_profile' %}" class="sidebar-item">Profile</a>    
+    <a href="#" class="sidebar-item">Settings</a>
+    <button type="button" class="logout-btn" id="logoutBtn">Logout</button>
+</div>
+
+<div class="logout-modal" id="logoutModal">
+    <div class="logout-box">
+    <h3>خروج از حساب</h3>
+    <p>آیا مطمئن هستید؟</p>
+    <div class="logout-actions">
+    <button type="button" class="cancel-btn" id="cancelBtn">Cancel</button>
+    <form method="post" action="{% url 'accounts:logout' %}">
+                {% csrf_token %}
+    <button type="submit" class="confirm-btn">Logout</button>
+    </form>
+    </div>
+    </div>
+    </div>
+
+
+<script src="{% static 'js/post_list.js' %}"></script>

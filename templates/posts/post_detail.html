@@ -1,22 +1,42 @@
 {% load static %}
 <!DOCTYPE html>
-<hrml>
-    <head>
-        <title>Post Detail</title>
-    </head>
-    <body>
-        <p>{{ post.content }}</p>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Post Detail</title>
+    <link rel="stylesheet" href="../../static/css/post_detail.css">
+</head>
+<body>
+<div class="container">
+<div class="post-card">
+<div class="post-image-box">
 {% if post.image and post.image.name %}
-    <img src="{{ post.image.url }}" alt="post image" width="300px" height="200px">
+<img src="{{ post.image.url }}" class="post-image">
 {% else %}
-    <img src="{% static 'images/default-post.png' %}" width="300px" height="200px">
+<img src="{% static 'images/default-post.png' %}" class="post-image">
 {% endif %}
-        <p>Author: {{ post.author.first_name }} {{ post.author.last_name }}</p>
-        <p>Created at: {{ post.created_at }}</p>
-        <a href="{% url 'posts:update' post.pk %}">Edit Post</a>
-        <form method="post" action="{% url 'posts:delete' post.pk %}">
-            {% csrf_token %}
-            <button type="submit">Delete Post</button>
-        </form>
-    </body>
+</div>
+<div class="post-content">
+<h1 class="title">Post Details</h1>
+<p class="content">
+{{ post.content }}
+</p>
+<div class="info-box">
+<p>
+Author :
+{{ post.author.first_name }}
+{{ post.author.last_name }}
+</p>
+<p>
+Created :
+{{ post.created_at }}
+</p>
+</div>
+<div class="buttons">
+</form>
+</div>
+</div>
+</div>
+</div>
+</body>
 </html>

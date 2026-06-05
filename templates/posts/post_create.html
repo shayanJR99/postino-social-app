@@ -16,6 +16,9 @@
 
     {% csrf_token %}
 
+    <div class="image-preview-box">
+        <div class="image-preview" id="previewContainer"></div>
+    </div>
 
     <div class="user-info">
 
@@ -25,8 +28,8 @@
                  class="profile-img">
         {% else %}
             <img src="{% static 'images/profile_Guest.png' %}"
-                 class="profile-img"
-                 alt="Default Profile">
+                 alt="Profile"
+                 class="profile-img">
         {% endif %}
 
         <p class="id">
@@ -35,26 +38,39 @@
         </p>
 
     </div>
+
     <h1>نوشتن پست جدید</h1>
 
-    <!-- CONTENT (اصلی) -->
-    <textarea class="thread-input"
-              name="content"
-              placeholder="چه چیزی در ذهنت هست؟"
-              required></textarea>
+    <textarea
+        class="input-text"
+        name="content"
+        placeholder="چه چیزی در ذهنت هست؟"
+        required></textarea>
 
-    <!-- IMAGE -->
-    <input type="file"
-           name="image"
-           accept="image/*"
-           class="post-image-input">
+    <label class="upload-btn">
 
+        انتخاب عکس
 
+        <input
+            type="file"
+            id="imageInput"
+            name="image"
+            accept="image/*"
+            multiple
+            class="post-image-input">
+
+    </label>
 
     <div class="btn-box">
-        <button type="submit" class="send-btn">
-            ارسال
+
+        <button
+            type="submit"
+            class="send-btn">
+
+            ارسال پست
+
         </button>
+
     </div>
 
 </form>

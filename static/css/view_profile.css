@@ -1,0 +1,133 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+body{
+    min-height:100vh;
+    background:
+    linear-gradient(135deg, #0f0c29,#302b63,#24243e
+    );
+    font-family:sans-serif;
+    padding:50px 20px;
+}
+.profile-box{
+    width:100%;
+    max-width:800px;
+    margin:auto;
+    background:
+    rgba(255,255,255,.08);
+    backdrop-filter:blur(15px);
+    border:1px solid rgba(255,255,255,.15);
+    border-radius:20px;
+    overflow:hidden;
+}
+.profile-header{
+    display:flex;
+    align-items:center;
+    gap:20px;
+    padding:25px;
+}
+.profile-image{
+    width:110px;
+    height:110px;
+    border-radius:50%;
+    object-fit:cover;
+}
+.profile-info{
+    flex:1;
+}
+.profile-name{
+    color:white;
+    font-size:30px;
+    margin-bottom:5px;
+}
+.profile-id{
+    color:rgba(255,255,255,.7);
+    margin-bottom:10px;
+}
+.profile-bio{
+    color:white;
+}
+.follow-btn{
+    border:none;
+    padding:12px 28px;
+    border-radius:10px;
+    background:
+    rgba(255,255,255,.15);
+    color:white;
+    cursor:pointer;
+    transition:.3s;
+}
+.follow-btn:hover{
+    background:
+    rgba(255, 255, 255, 0.974);
+    color: black;
+    scale: 1.1;
+    box-shadow: black 10 8px 7px;
+}
+.stats-box{
+    display:flex;
+    justify-content:space-around;
+    padding:20px;
+    border-top:
+    1px solid rgba(255,255,255,.1);
+}
+.stat-item{
+    text-align:center;
+}
+.stat-item h3{
+    color:white;
+    margin-bottom:5px;
+}
+.stat-item p{
+    color: rgba(255,255,255,.7);
+}
+.posts-box{
+    width:100%;
+    max-width:800px;
+    margin:25px auto 0 auto;
+}
+.posts-container{
+    min-height:300px;
+    background:
+    rgba(255,255,255,.08);
+    backdrop-filter:blur(15px);
+    border:
+    1px solid rgba(255,255,255,.15);
+    border-radius:20px;
+    padding:25px;
+    color:white;
+}
+
+/* Mobile */
+
+@media(max-width:768px){
+
+    .profile-header{
+
+        flex-direction:column;
+
+        text-align:center;
+    }
+
+    .follow-btn{
+
+        width:100%;
+    }
+}
+
+@media(max-width:500px){
+
+    .stats-box{
+
+        flex-direction:column;
+
+        gap:20px;
+    }
+
+    .profile-name{
+
+        font-size:24px;
+    }
+}

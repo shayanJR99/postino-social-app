@@ -3,10 +3,8 @@ from .models import Post
 from django.views.generic.list import ListView 
 from django.views.generic.detail import DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic.edit import CreateView
 from django.urls import reverse_lazy
-from django.views.generic.edit import UpdateView
-from django.views.generic.edit import DeleteView
+from django.views.generic.edit import UpdateView,DeleteView,CreateView
 
 
 # Create your views here.

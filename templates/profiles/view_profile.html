@@ -6,57 +6,145 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile</title>
 
-    <link rel="stylesheet" href="{% static "css/view_profile.css" %}">
+    <link rel="stylesheet" href="{% static 'css/view_profile.css' %}">
 </head>
 <body>
-    {% include "includes/sidebar.html" %}
-    <div class="profile-box">
-        <div class="profile-header">
-        <img src="{{ profile.image.url }}" alt="Profile" class="profile-image">
-        <div class="profile-info">
-        <h4 class="profile-name">{{profile.first_name}} {{profile.last_name}}</h4>
-        <p class="profile-id">{{profile.username}}</p>
-        <p class="profile-bio">{{profile.description}}</p>
-        </div>
-        <form action="" method="post">
-        <button class="follow-btn" type="submit">follow</button>
-        </form>
-        </div>
-        <div class="stats-box">
-        <div class="stat-item">
-        <h3>120</h3>
-        <p>Following</p>
-        </div>
-        <div class="stat-item">
-        <h3>{{ posts_count }}</h3>
-        <p>Posts</p>
-        </div>
-        <div class="stat-item">
-        <h3>580</h3>
-        <p>Followers</p>
-        </div>
-        </div>
-        </div>
-        <div class="posts-box">
-        <div class="posts-container">
-        {% for post in posts %}
-        <a h ref="{% url 'posts:detail' post.id %}" class="post-link" style="text-decoration:none;">
-            <div class="post" style="max-width:300px; max-height:300px">
-                <p>{{ post.content }}</p>
 
-            {% if post.image %}
-                <img src="{{ post.image.url }}">
+    {% include "includes/sidebar.html" %}
+
+    <div class="profile-box">
+
+        <div class="profile-header">
+
+            {% if profile.image %}
+                <img src="{{ profile.image.url }}"
+                     alt="Profile"
+                     class="profile-image">
             {% endif %}
 
-            <small>{{ post.created_at }}</small>
+            <div class="profile-info">
+                <h4 class="profile-name">
+                    {{ profile.first_name }} {{ profile.last_name }}
+                </h4>
+
+                <p class="profile-id">
+                    @{{ profile.username }}
+                </p>
+
+                <p class="profile-bio">
+                    {{ profile.description }}
+                </p>
             </div>
+
+            <form action="" method="post">
+                {% csrf_token %}
+                <button class="follow-btn" type="submit">
+                    Follow
+                </button>
+            </form>
+
+        </div>
+
+        <div class="stats-box">
+
+            <div class="stat-item">
+                <h3>120</h3>
+                <p>Following</p>
+            </div>
+
+            <div class="stat-item">
+                <h3>{{ posts_count }}</h3>
+                <p>Posts</p>
+            </div>
+
+            <div class="stat-item">
+                <h3>580</h3>
+                <p>Followers</p>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="posts-box">
+
+        <div class="posts-container">
+
+            {% for post in posts %}
+
+            <a href="{% url 'posts:detail' post.id %}"
+               class="post-link">
+
+                <div class="post">
+
+                    <div class="post-gallery">
+
+                        {% if post.image %}
+                            <div class="gallery-item">
+                                <img src="{{ post.image.url }}"
+                                     alt="Post Image">
+                            </div>
+                        {% else %}
+                            <div class="gallery-item">
+                                <img src="{% static 'images/default-post.png' %}"
+                                     alt="Post Image">
+                            </div>
+                        {% endif %}
+
+                    </div>
+
+                    <div class="post-header">
+
+                        <div class="post-user">
+
+                            {% if profile.image %}
+                                <img src="{{ profile.image.url }}"
+                                     class="user-profile-image"
+                                     alt="Profile">
+                            {% else %}
+                                <img src="{% static 'images/profile_Guest.png' %}"
+                                     class="user-profile-image"
+                                     alt="Profile">
+                            {% endif %}
+
+                            <div class="user-data">
+                                <h3>
+                                    {{ profile.first_name }}
+                                    {{ profile.last_name }}
+                                </h3>
+
+                                <span>
+                                    @{{ profile.username }}
+                                </span>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="post-content">
+                        <p>{{ post.content }}</p>
+                    </div>
+
+                    <div class="post-footer">
+                        <small>{{ post.created_at }}</small>
+                    </div>
+
+                </div>
+
             </a>
-        {% empty %}
-            <p>این کاربر هنوز پستی منتشر نکرده است.</p>
-        {% endfor %}
 
+            {% empty %}
+
+                <p class="empty-posts">
+                    این کاربر هنوز پستی منتشر نکرده است.
+                </p>
+
+            {% endfor %}
 
         </div>
-        </div>
+
+    </div>
+
 </body>
 </html>

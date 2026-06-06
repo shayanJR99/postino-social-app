@@ -92,10 +92,6 @@ body{
     transition:.3s;
 }
 
-.post:hover{
-    transform:translateY(-4px);
-}
-
 .post-gallery{
     display:flex;
     gap:10px;

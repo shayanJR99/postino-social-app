@@ -1,45 +1,62 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Postino</title>
-
-    <link rel="stylesheet" href="../../static/css/follower.css">
+    <title>Postino - فالویینگ‌ها</title>
+    <link rel="stylesheet" href="{% static 'css/following.css' %}">
 </head>
 
 <body>
-    <div class="search-box">
-        <div class="search-container">
+<div class="search-box">
+        <form method="get" action="" class="search-container">
             <input
                 type="text"
+                name="search"
                 class="search-input"
-                placeholder="دنبال چه کسی میگردی ؟">
-            <button class="search-btn">
-                    <img
-                    src="../../media/search-btn.png"
-                    alt="Search">
+                placeholder="دنبال چه کسی میگردی ؟"
+                value="{{ search_query }}"> <button type="submit" class="search-btn">
+                <img src="/media/search-btn.png" alt="Search">
             </button>
-        </div>
+        </form>
     </div>
+
+    {% for person in profiles_list %}
     <div class="follower-div">
         <div class="user-info">
-            <img
-            src="../../media/ghost.png"
-            alt="Profile"
-            class="img-follower">
+            <img src="{% if person.image %}{{ person.image.url }}{% else %}{% static 'images/profile-Guest.png' %}{% endif %}" alt="Profile" class="img-follower">
+            
             <div class="user-text">
-            <h3>parham</h3>
-            <span>@prmfi0</span>
+                <a href="{% url 'profiles:profile' person.username %}" style="text-decoration: none; color: inherit;">
+                    <h3>{{ person.first_name|default:person.username }}</h3>
+                </a>
+                <span>@{{ person.username|default:"username" }}</span>
             </div>
         </div>
-        <button class="follow-btn">
-            دنبال کردن
-        </button>
 
+        {% if request.user.is_authenticated and person != request.user.profile %}
+            {% if person.id in follow_set %}
+                <form method="post" action="{% url 'profiles:toggle_follow' person.id %}" style="margin: 0;">
+                    {% csrf_token %}
+                    <button type="submit" class="follow-btn unfollow-style" style="background-color: #dc3545;">
+                        لغو دنبال کردن
+                    </button>
+                </form>
+            {% else %}
+                <form method="post" action="{% url 'profiles:toggle_follow' person.id %}" style="margin: 0;">
+                    {% csrf_token %}
+                    <button type="submit" class="follow-btn">
+                        دنبال کردن
+                    </button>
+                </form>
+            {% endif %}
+        {% endif %}
     </div>
+    {% empty %}
+        <div style="text-align: center; margin-top: 20px; color: #666;">این کاربر کسی را دنبال نمی‌کند.</div>
+    {% endfor %}
 
 </body>
-
 </html>

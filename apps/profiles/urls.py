@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import MyProfileView, ProfileDetailView, toggle_follow
+from .views import *
 
 app_name = "profiles"
 
@@ -9,4 +9,5 @@ urlpatterns = [
     
     # آدرس جدید سیستم یکپارچه توگل فالو با شناسه پروفایل
     path("toggle-follow/<int:profile_id>/", toggle_follow, name="toggle_follow"),
+    path("<str:username>/<str:relation_type>/", user_relations_list, name="user_relations"),
 ]

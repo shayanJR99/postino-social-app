@@ -63,7 +63,7 @@ class Profile(models.Model):
     first_name = models.CharField(max_length=25, blank=True, null=True)
     last_name = models.CharField(max_length=255, blank=True, null=True)
     description = models.TextField(blank=True, null=True)
-    image = models.ImageField(upload_to="profiles/", blank=True, null=True)
+    image = models.ImageField(upload_to="profiles/", blank=True, null=True,default="/profile-Guest.png")
     created_date = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True)
   

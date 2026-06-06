@@ -1,16 +1,38 @@
-const sendBtn = document.querySelector('.send-btn');
-const textarea = document.querySelector('.thread-input');
+const imageInput = document.getElementById("imageInput");
+const previewContainer = document.getElementById("previewContainer");
 
-sendBtn.addEventListener('click', () => {
+imageInput.addEventListener("change", () => {
 
-    const text = textarea.value.trim();
+    previewContainer.innerHTML = "";
 
-    if (!text) {
-        alert('متن پست را وارد کنید');
+    const files = [...imageInput.files];
+
+    if(files.length > 3){
+
+        alert("حداکثر 3 عکس مجاز است");
+
+        imageInput.value = "";
+
         return;
     }
 
-    window.location.href =
-        `index.html?post=${encodeURIComponent(text)}`;
+    files.forEach(file => {
+
+        const reader = new FileReader();
+
+        reader.onload = function(e){
+
+            const img = document.createElement("img");
+
+            img.src = e.target.result;
+
+            previewContainer.appendChild(img);
+        };
+
+        reader.readAsDataURL(file);
+
+    });
 
 });
+
+

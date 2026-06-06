@@ -5,46 +5,109 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>postino</title>
-    <link rel="stylesheet" href="{% static 'css/style.css'  %}">
-
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
- 
-    <div id="posts-container">
-      {% for post in posts  %}
-        <div class="post">
-            <h3>{{ post.author }}</h3>
-{% if post.image and post.image.name %}
-    <img src="{{ post.image.url }}" alt="post image" width="300px" height="200px">
-{% else %}
-    <img src="{% static 'images/default-post.png' %}" width="300px" height="200px">
-{% endif %}
-            <p>{{ post.content }}</p>
 
-            <a href="{% url 'posts:detail' post.pk %}">ادامه مطلب</a>
+{% include "includes/sidebar.html" %}
+<div id="posts-container">
+    {% for post in posts %}
+    
+    <div class="post">
+
+        <!-- post image -->
+        <div class="post-gallery">
+            {% if post.image %}
+                <div class="gallery-item">
+                    <img src="{{ post.image.url }}" alt="post image">
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- header -->
+        <div class="post-header">
+
+            <div class="post-user">
+
+                {% if post.author.image %}
+                    <img src="{{ post.author.image.url }}" class="profile-image" alt="profile">
+                {% endif %}
+
+                <div class="user-data">
+                    <h3>{{ post.author }}</h3>
+
+                    {% if post.author.username %}
+                        <a href="{% url 'profiles:profile' post.author.username %}" class="username-link">
+                            <span>@{{ post.author.username }}</span>
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- FOLLOW BUTTON (فعلاً placeholder) -->
+{% if post.author %}
+    {% if request.user.is_authenticated and post.author != request.user.profile %}
+        
+        {% if post.author.id in follow_set %}
+            <form method="post" action="{% url 'profiles:toggle_follow' post.author.id %}">
+                {% csrf_token %}
+                <button type="submit" class="follow-btn unfollow-style">Unfollow</button>
+            </form>
+        {% else %}
+            <form method="post" action="{% url 'profiles:toggle_follow' post.author.id %}">
+                {% csrf_token %}
+                <button type="submit" class="follow-btn follow-style">Follow</button>
+            </form>
+        {% endif %}
+
+    {% endif %}
+{% endif %}
 
         </div>
-      {% endfor %}
+
+        <!-- content -->
+        <div class="post-content">
+            <p>{{ post.content }}</p>
+        </div>
+
+        <!-- footer -->
+        <div class="post-footer">
+
+            <!-- LIKE -->
+            <form method="post" action="#">
+                {% csrf_token %}
+                <button type="submit" class="action-btn">
+                    <img src="/media/like.png" class="action-icon" alt="like">
+                    <span>128</span>
+                </button>
+            </form>
+
+            <!-- COMMENT -->
+            <form method="post" action="#">
+                {% csrf_token %}
+                <button type="submit" class="action-btn">
+                    <img src="/media/comment.png" class="action-icon" alt="comment">
+                    <span>42</span>
+                </button>
+            </form>
+
+            <!-- DETAILS -->
+            <form method="get" action="{% url 'posts:detail' post.pk %}">
+                <button type="submit" class="action-btn">
+                    <img src="/media/details.png" class="action-icon" alt="details">
+                    <span>details</span>
+                </button>
+            </form>
+
+        </div>
 
     </div>
-<input type="checkbox" id="menu-toggle">
-<label for="menu-toggle" class="menu-btn">
-  <div class="line"></div>
-  <div class="line"></div>
-  <div class="line"></div>
-</label>
-<div class="menu-box">
-  <div class="menu-item">Home</div>
-  <div class="menu-item">Profile</div>
-  <div class="menu-item">Settings</div>
-<form method="post" action="{% url 'accounts:logout' %}" class="menu-item">
-    {% csrf_token %}
-    <button type="submit"  >
-  <div class="menu-item">Logout</div>
-  </form>
-    </button>
-</form>
+    {% endfor %}
+
 </div>
+
+
+<script src="{% static 'js/post_list.js' %}"></script>
+
 </body>
-<script src="{% static 'js/script.js'  %}"></script>
 </html>

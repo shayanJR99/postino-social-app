@@ -7,7 +7,7 @@ class Post(models.Model):
 
     content  = models.TextField(null=True)
     is_edited = models.BooleanField(default=False)
-    image = models.ImageField(upload_to="posts/", blank=True, null=True)
+    image = models.ImageField(upload_to="posts/", blank=True, null=True ,default="/ghost.png")
 
     likes = models.ManyToManyField(Profile, blank=True)
 

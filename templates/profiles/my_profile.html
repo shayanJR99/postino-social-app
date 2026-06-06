@@ -1,0 +1,130 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+
+    <link rel="stylesheet" href="{% static 'css/my_profile.css' %}">
+</head>
+<body>
+
+    {% include "includes/sidebar.html" %}
+
+    <div class="profile-box">
+
+        <div class="profile-header">
+
+            {% if profile.image %}
+                <img src="{{ profile.image.url }}" alt="Profile" class="profile-image">
+            {% endif %}
+
+            <div class="profile-info">
+                <h2 class="profile-name">{{ profile.first_name }}</h2>
+                <p class="profile-id">@{{ profile.username }}</p>
+                <p class="profile-bio">{{ profile.description }}</p>
+            </div>
+
+            <button class="edit-btn">Edit Profile</button>
+
+        </div>
+
+        <div class="stats-box">
+
+            <div class="stat-item">
+                <h3>{{following_count}}</h3>
+                <p>Following</p>
+            </div>
+
+            <div class="stat-item">
+                <h3>{{ posts_count }}</h3>
+                <p>Posts</p>
+            </div>
+
+            <div class="stat-item">
+                <h3>{{followers_count}}</h3>
+                <p>Followers</p>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="posts-box">
+
+        <div class="posts-container">
+
+            {% for post in posts %}
+
+            <a href="{% url 'posts:detail' post.pk %}" class="post-link">
+
+                <div class="post">
+
+                    <div class="post-gallery">
+
+                        {% if post.image and post.image.name %}
+                            <div class="gallery-item">
+                                <img src="{{ post.image.url }}" alt="Post Image">
+                            </div>
+                        {% else %}
+                            <div class="gallery-item">
+                                <img src="{% static 'images/default-post.png' %}" alt="Post Image">
+                            </div>
+                        {% endif %}
+
+                    </div>
+
+                    <div class="post-details">
+
+                        <div class="post-header">
+
+                            <div class="post-user">
+
+                                {% if profile.image %}
+                                    <img src="{{ profile.image.url }}"
+                                         class="user-profile-image"
+                                         alt="Profile">
+                                {% else %}
+                                    <img src="{% static 'images/profile_Guest.png' %}"
+                                         class="user-profile-image"
+                                         alt="Profile">
+                                {% endif %}
+
+                                <div class="user-data">
+                                    <h3>{{ post.author }}</h3>
+                                    <span>@{{ post.author }}</span>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="post-content">
+                            <p>{{ post.content }}</p>
+                        </div>
+
+                        <div class="post-footer">
+                            <small>{{ post.created_at }}</small>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </a>
+
+            {% empty %}
+
+                <p class="empty-posts">
+                    این کاربر هنوز پستی منتشر نکرده است.
+                </p>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</body>
+</html>

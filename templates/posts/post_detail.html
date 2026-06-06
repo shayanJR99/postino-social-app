@@ -24,8 +24,12 @@
 <div class="info-box">
 <p>
 Author :
+{% if post.author.first_name %}
 {{ post.author.first_name }}
+{% endif %}
+{% if post.author.last_name %}
 {{ post.author.last_name }}
+{% endif %}
 </p>
 <p>
 Created :

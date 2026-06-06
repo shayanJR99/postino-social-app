@@ -1,31 +1,32 @@
 from django.db import models
+from django.db.models import CheckConstraint, Q, UniqueConstraint
 from apps.accounts.models import Profile
-from django.core.exceptions import ValidationError
-
-# Create your models here.
 
 class Follow(models.Model):
+    # کسی که فالو می‌کند
     follower = models.ForeignKey(
         Profile,
         on_delete=models.CASCADE,
-        related_name='following'
+        related_name='following_relations'
     )
-
+    # کسی که فالو می‌شود
     following = models.ForeignKey(
         Profile,
         on_delete=models.CASCADE,
-        related_name='followers'
+        related_name='follower_relations'
     )
-
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         constraints = [
+            # جلوگیری از فالو تکراری
             models.UniqueConstraint(
                 fields=['follower', 'following'],
                 name='unique_follow'
+            ),
+            # اصلاح این بخش: تغییر check به condition
+            models.CheckConstraint(
+                condition=~models.Q(follower=models.F('following')), # اینجا کلمه condition جایگزین شد
+                name='prevent_self_follow'
             )
         ]
-    def clean(self):
-        if self.follower == self.following:
-            raise ValidationError("You can't follow yourself")

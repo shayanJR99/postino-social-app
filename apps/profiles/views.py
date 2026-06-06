@@ -2,15 +2,19 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic.detail import DetailView
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
+from django.db import models  # <-- ۱. اضافه شدن این خط برای حل مشکل سرچ و models.Q
 
 from apps.accounts.models import Profile
+from apps.posts.models import Post # <-- اضافه شدن مدل پست جهت فیلتر دقیق‌تر
 from .models import Follow
+
 
 # ---------------- تابع کمکی بهینه‌شده ----------------
 def get_profile_social_data(profile):
-    posts = profile.posts.all()
+    # اصلاح جزئی برای واکشی دقیق پست‌های این پروفایل بدون اتکا به related_name
+    posts = Post.objects.filter(author=profile)
 
-    # دریافت لیست واقعی پروفایل‌ها با استفاده از values_list یا select_related
+    # دریافت لیست واقعی پروفایل‌ها با استفاده از روابط مدل Follow
     followers_profiles = Profile.objects.filter(following_relations__following=profile)
     following_profiles = Profile.objects.filter(follower_relations__follower=profile)
 
@@ -88,3 +92,44 @@ def toggle_follow(request, profile_id):
 
     # بازگشت به صفحه‌ای که کاربر در آن قرار داشت
     return redirect(request.META.get("HTTP_REFERER", "/"))
+
+
+# ---------------- لیست فالوورها و فالویینگ‌ها همراه با سرچ ----------------
+def user_relations_list(request, username, relation_type):
+    target_profile = get_object_or_404(Profile, username=username)
+    
+    # گرفتن عبارت جستجو شده از آدرس URL
+    search_query = request.GET.get('search', '')
+
+    if relation_type == 'followers':
+        profiles = Profile.objects.filter(following_relations__following=target_profile).select_related('user')
+        template_name = 'profiles/follower.html'
+    elif relation_type == 'following':
+        profiles = Profile.objects.filter(follower_relations__follower=target_profile).select_related('user')
+        template_name = 'profiles/following.html'
+    else:
+        return redirect('profiles:profile', username=username)
+
+    # اعمال فیلتر جستجو (بدون ارور به خاطر اضافه شدن خط ۴)
+    if search_query:
+        profiles = profiles.filter(
+            models.Q(username__icontains=search_query) | 
+            models.Q(first_name__icontains=search_query)
+        )
+
+    # مجموعه آیدی کسانی که کاربر در حال حاضر آن‌ها را فالو دارد
+    follow_set = set()
+    if request.user.is_authenticated:
+        follow_set = set(
+            Follow.objects.filter(
+                follower=request.user.profile
+            ).values_list("following_id", flat=True)
+        )
+
+    context = {
+        'target_profile': target_profile,
+        'profiles_list': profiles,
+        'follow_set': follow_set,
+        'search_query': search_query,
+    }
+    return render(request, template_name, context)

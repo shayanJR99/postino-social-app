@@ -74,13 +74,26 @@
         <div class="post-footer">
 
             <!-- LIKE -->
-            <form method="post" action="#">
-                {% csrf_token %}
-                <button type="submit" class="action-btn">
-                    <img src="/media/like.png" class="action-icon" alt="like">
-                    <span>128</span>
-                </button>
-            </form>
+{% if request.user.profile in post.likes.all %}
+<form method="post" action="{% url 'posts:unlike' post.id %}">
+    {% csrf_token %}
+    <button type="submit" class="action-btn">
+        <img src="/media/like.png" class="action-icon" alt="like">
+        <span>{{ post.likes.count }}</span>
+    </button>
+</form>
+
+{% else %}
+
+<form method="post" action="{% url 'posts:like' post.id %}">
+    {% csrf_token %}
+    <button type="submit" class="action-btn">
+        <img src="/media/like.png" class="action-icon" alt="like">
+        <span>{{ post.likes.count }}</span>
+    </button>
+</form>
+
+{% endif %}
 
             <!-- COMMENT -->
             <form method="post" action="#">

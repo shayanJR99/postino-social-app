@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from .models import Post
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
@@ -6,15 +5,9 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.views.generic.edit import UpdateView, DeleteView, CreateView
 from apps.profiles.models import Follow
-
-
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import get_object_or_404,redirect
 # ---------------- POST LIST ----------------
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import ListView
-
-from .models import Post
-from apps.profiles.models import Follow
-
 class PostList(LoginRequiredMixin, ListView):
     model = Post
     template_name = "posts/post_list.html"
@@ -28,6 +21,9 @@ class PostList(LoginRequiredMixin, ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context["follow_set"] = set(Follow.objects.filter(
+                follower=self.request.user.profile
+                ).values_list("following_id", flat=True))
         
         if self.request.user.is_authenticated:
             context["follow_set"] = set(
@@ -37,7 +33,7 @@ class PostList(LoginRequiredMixin, ListView):
             )
         else:
             context["follow_set"] = set()
-
+        
         return context
 # ---------------- POST CREATE ----------------
 class PostCreate(CreateView):
@@ -80,3 +76,24 @@ class PostUpdate(LoginRequiredMixin, UpdateView):
     def form_valid(self, form):
         form.instance.is_edited = True
         return super().form_valid(form)
+    
+    
+    
+# ---------------- POST like ----------------
+@login_required
+def like_post(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+
+    post.likes.add(request.user.profile)
+
+    return redirect(request.META.get("HTTP_REFERER", "/"))
+
+
+# ---------------- POST unlike ----------------
+@login_required
+def unlike_post(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+
+    post.likes.remove(request.user.profile)
+
+    return redirect(request.META.get("HTTP_REFERER", "/"))

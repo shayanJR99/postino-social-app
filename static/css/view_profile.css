@@ -1,7 +1,14 @@
+@font-face{
+    font-family:"Vazir";
+    src:url("./fonts/Vazir.woff2") format("woff2");
+}
+
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
+    font-family:"Vazir",sans-serif;
+
 }
 
 body{
@@ -15,10 +22,6 @@ body{
     font-family:sans-serif;
     padding:50px 20px;
 }
-
-/* ===================== */
-/* PROFILE */
-/* ===================== */
 
 .profile-box{
     width:100%;
@@ -103,11 +106,6 @@ body{
 .stat-item p{
     color:rgba(255,255,255,.7);
 }
-
-/* ===================== */
-/* POSTS */
-/* ===================== */
-
 .posts-box{
     width:100%;
     max-width:800px;
@@ -182,22 +180,18 @@ body{
     object-fit:cover;
     border:2px solid rgba(255,255,255,.15);
 }
-
 .user-data h3{
     color:white;
     font-size:20px;
     margin-bottom:4px;
 }
-
 .user-data span{
     color:rgba(255,255,255,.55);
     font-size:14px;
 }
-
 .post-content{
     padding:0 20px 20px;
 }
-
 .post-content p{
     padding:18px;
     border-radius:18px;
@@ -206,26 +200,18 @@ body{
     line-height:1.8;
     color:white;
 }
-
 .post-footer{
     padding:18px;
     border-top:1px solid rgba(255,255,255,.08);
 }
-
 .post-footer small{
     color:rgba(255,255,255,.7);
 }
-
 .empty-posts{
     color:white;
     text-align:center;
     padding:30px;
 }
-
-/* ===================== */
-/* MOBILE */
-/* ===================== */
-
 @media(max-width:768px){
 
     .profile-header{

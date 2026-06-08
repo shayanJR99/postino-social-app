@@ -1,0 +1,244 @@
+@font-face{
+    font-family:"Vazir";
+    src:url("./fonts/Vazir.woff2") format("woff2");
+}
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Vazir",sans-serif;
+}
+
+body{
+    min-height:100vh;
+    background:linear-gradient(
+        135deg,
+        #0f0c29,
+        #302b63,
+        #24243e
+    );
+    font-family:sans-serif;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding:60px 20px;
+}
+
+/* Search Box */
+
+.search-box{
+    width:100%;
+    max-width:700px;
+    background:rgba(255,255,255,.1);
+    backdrop-filter:blur(15px);
+    -webkit-backdrop-filter:blur(15px);
+    border:1px solid rgba(255,255,255,.2);
+    border-radius:20px;
+    box-shadow:0 8px 32px rgba(0,0,0,.3);
+    padding:20px;
+}
+
+.search-container{
+    display:flex;
+    flex-direction:row-reverse;
+    align-items:center;
+    gap:12px;
+}
+
+.search-input{
+    flex:1;
+    padding:15px 20px;
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.2);
+    border-radius:15px;
+    color:#fff;
+    font-size:16px;
+    outline:none;
+    backdrop-filter:blur(15px);
+    transition:.3s;
+}
+
+.search-input::placeholder{
+    color:rgba(255,255,255,.7);
+}
+
+.search-input:focus{
+    background:rgba(255,255,255,.12);
+    border-color:rgba(255,255,255,.4);
+    box-shadow:
+    0 0 20px rgba(255,255,255,.15),
+    0 8px 32px rgba(0,0,0,.3);
+}
+
+.search-btn{
+    width:50px;
+    height:50px;
+    border:none;
+    border-radius:18px;
+    cursor:pointer;
+    background:rgba(255,255,255,.12);
+    backdrop-filter:blur(20px);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    border:1px solid rgba(255,255,255,.2);
+    transition:.3s;
+}
+
+.search-btn:hover{
+    box-shadow:0 0 20px rgba(255,255,255,.15);
+    scale: 1.04;
+    background:rgba(255,255,255,.18);
+}
+
+.search-btn img{
+    width:30px;
+    height:30px;
+    object-fit:contain;
+}
+
+/* User Card */
+
+.follower-div{
+    width:100%;
+    max-width:700px;
+    margin-top:20px;
+    background:rgba(255,255,255,.1);
+    backdrop-filter:blur(15px);
+    -webkit-backdrop-filter:blur(15px);
+    border:1px solid rgba(255,255,255,.2);
+    border-radius:20px;
+    box-shadow:0 8px 32px rgba(0,0,0,.3);
+    padding:15px 20px;
+    display:flex;
+    flex-direction:row-reverse;
+    justify-content:space-between;
+    align-items:center;
+    transition:.3s;
+}
+
+.follower-div:hover{
+    box-shadow:
+    0 12px 35px rgba(0,0,0,.35),
+    0 0 20px rgba(255,255,255,.12);
+}
+
+.user-info{
+    display:flex;
+    flex-direction:row-reverse;
+    align-items:center;
+    gap:15px;
+}
+
+.img-follower{
+    width:60px;
+    height:60px;
+    border-radius:50%;
+    object-fit:cover;
+    border:2px solid rgba(255,255,255,.2);
+}
+
+.user-text{
+    display:flex;
+    flex-direction:column;
+    text-align:left;
+}
+
+.user-text h3{
+    color:#fff;
+    font-size:20px;
+    margin-bottom:5px;
+}
+
+.user-text span{
+    color:rgba(255,255,255,.7);
+    font-size:14px;
+}
+
+.follow-btn{
+    padding:10px 18px;
+    border:none;
+    border-radius:12px;
+    background:rgba(255,255,255,.15);
+    color:#fff;
+    cursor:pointer;
+    backdrop-filter:blur(15px);
+    transition:.3s;
+}
+
+.follow-btn:hover{
+    background:rgba(255,255,255,.25);
+    transform:scale(1.05);
+    box-shadow:0 0 20px rgba(255,255,255,.15);
+}
+
+/* Responsive */
+
+@media(max-width:768px){
+
+    body{
+        padding:40px 15px;
+    }
+
+    .search-box{
+        padding:15px;
+    }
+
+    .search-input{
+        font-size:14px;
+        padding:12px 16px;
+    }
+
+    .search-btn{
+        width:55px;
+        height:55px;
+    }
+
+    .img-follower{
+        width:50px;
+        height:50px;
+    }
+
+    .user-text h3{
+        font-size:16px;
+    }
+}
+
+@media(max-width:480px){
+
+    body{
+        padding:25px 10px;
+    }
+
+    .search-container{
+        gap:8px;
+    }
+
+    .search-btn{
+        width:50px;
+        height:50px;
+    }
+
+    .search-btn img{
+        width:24px;
+        height:24px;
+    }
+
+    .img-follower{
+        width:45px;
+        height:45px;
+    }
+
+    .follow-btn{
+        padding:8px 12px;
+        font-size:12px;
+    }
+
+    .user-text h3{
+        font-size:14px;
+    }
+
+    .user-text span{
+        font-size:12px;
+    }
+}

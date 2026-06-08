@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>postino</title>
+    <link rel="stylesheet" href="../../static/css/comment.css">
+</head>
+<body>
+
+<div class="comment-page">
+
+    <div class="main-post">
+
+        <div id="posts-container">
+            <div class="post">
+
+                <div class="post-gallery">
+
+                    {% if post.image and post.image.name %}
+                    <div class="gallery-item">
+                        <img src="{{ post.image.url }}" alt="post image">
+                    </div>
+                    {% endif %}
+
+                </div>
+
+                <div class="post-header">
+
+                    <div class="post-user">
+
+                        {% if post.author.image %}
+                        <img src="{{ post.author.image.url }}"
+                             class="profile-image"
+                             alt="profile">
+                        {% endif %}
+
+                        <div class="user-data">
+
+                            <a href="{% url 'profiles:profile' post.author.username %}"
+                               class="username-link">
+                                <h3>{{ post.author }}</h3>
+                            </a>
+
+                            <a href="{% url 'profiles:profile' post.author.username %}"
+                               class="username-link">
+                                <span>@{{ post.author.username }}</span>
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                    <form method="post" action="#">
+                        {% csrf_token %}
+                        <button type="submit" class="follow-btn">
+                            Follow
+                            <span class="follow-count">1.2K</span>
+                        </button>
+                    </form>
+
+                </div>
+
+                <div class="post-content">
+                    <p>{{ post.content }}</p>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="comment-form">
+
+        <form action="" method="post">
+            <textarea
+                name="comment"
+                placeholder="به چی فکر میکنید ..."
+            ></textarea>
+
+            <button type="submit">
+                ارسال
+            </button>
+
+        </form>
+
+    </div>
+
+    <div class="comment-card">
+
+        <div class="comment-header">
+
+            <div class="comment-avatar">
+                <img
+                    class="img-comment"
+                    src="../../media/ghost.png"
+                    alt="profile"
+                >
+            </div>
+
+            <div class="comment-user">
+
+                <h4>PRMFI</h4>
+
+                <span>
+                    @prmfi
+                </span>
+
+            </div>
+
+        </div>
+
+        <div class="comment-text">
+            به چی فکر میکنید ...
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

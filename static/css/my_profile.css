@@ -1,7 +1,12 @@
+@font-face{
+    font-family:"Vazir";
+    src:url("./fonts/Vazir.woff2") format("woff2");
+}
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
+    font-family:"Vazir",sans-serif;
 }
 
 body{

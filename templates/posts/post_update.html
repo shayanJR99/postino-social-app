@@ -1,55 +1,81 @@
 {% load static %}
-
-<!doctype html>
-
+<!DOCTYPE html>
 <html lang="fa" dir="rtl">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ویرایش پست</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Box</title>
+    <link rel="stylesheet" href="../../static/css/post_update.css">
+</head>
+<body>
+{% include "includes/sidebar.html" %}
+<form class="text-box"
+      action="{% url 'posts:postcreate' %}"
+      method="post"
+      enctype="multipart/form-data">
 
-    ```
-    <link rel="stylesheet" href="{% static 'css/post_update.css' %}" />
-    ```
-  </head>
+    {% csrf_token %}
 
-  <body>
-    {% include "includes/sidebar.html" %}
-    <main class="update-post-container">
-      <div class="update-post-card">
-        <div class="update-post-header">
-          <h1 class="update-post-title">ویرایش پست</h1>
+    <div class="image-preview-box">
+        <div class="image-preview" id="previewContainer"></div>
+    </div>
 
-          <p class="current-post-title">{{ post.title }}</p>
-        </div>
+    <div class="user-info">
 
-        <form
-          method="post"
-          enctype="multipart/form-data"
-          class="update-post-form"
-        >
-          {% csrf_token %}
+        {% if request.user.profile.image %}
+            <img src="{{ request.user.profile.image.url }}"
+                 alt="Profile"
+                 class="profile-img">
+        {% else %}
+            <img src="{% static 'images/profile_Guest.png' %}"
+                 alt="Profile"
+                 class="profile-img">
+        {% endif %}
 
+        <p class="id">
+            @{{ request.user.profile.username }}
+            <span class="online"></span>
+        </p>
 
+    </div>
 
-          <div class="form-group">
-            <label for="{{ form.content.id_for_label }}"> محتوا </label>
+    <h1>ایجاد تغییرات در پست</h1>
 
-            {{ form.content }}
-          </div>
+    <textarea
+        class="input-text"
+        name="content"
+        placeholder="چه چیزی در ذهنت هست؟"
+        required></textarea>
 
-          <div class="form-group">
-            <label for="{{ form.image.id_for_label }}"> تصویر </label>
+    <label class="upload-btn">
 
-            {{ form.image }}
-          </div>
+        انتخاب عکس
 
-          <div class="form-actions">
-            <button type="submit" class="update-btn">ذخیره تغییرات</button>
-          </div>
-        </form>
-      </div>
-    </main>
-    ```
-  </body>
+        <input
+            type="file"
+            id="imageInput"
+            name="image"
+            accept="image/*"
+            multiple
+            class="post-image-input">
+
+    </label>
+
+    <div class="btn-box">
+
+        <button
+            type="submit"
+            class="send-btn">
+
+           ادیت پست
+
+        </button>
+
+    </div>
+
+</form>
+
+<script src="{% static 'js/post.js' %}"></script>
+
+</body>
 </html>

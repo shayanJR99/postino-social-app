@@ -36,31 +36,48 @@
                 </p>
             </div>
 
-            <form action="" method="post">
+{% if request.user.is_authenticated and request.user.profile != profile %}
+    <div class="follow-action-container">
+        {% if is_following %}
+            <form method="post" action="{% url 'profiles:toggle_follow' profile.id %}">
                 {% csrf_token %}
-                <button class="follow-btn" type="submit">
+                <button type="submit" class="follow-btn unfollow-style" style="background-color: #dc3545; color: white; padding: 8px 16px; border: none; border-radius: 4px; cursor: pointer;">
+                    Unfollow
+                </button>
+            </form>
+        {% else %}
+            <form method="post" action="{% url 'profiles:toggle_follow' profile.id %}">
+                {% csrf_token %}
+                <button type="submit" class="follow-btn follow-style" style="background-color: #007bff; color: white; padding: 8px 16px; border: none; border-radius: 4px; cursor: pointer;">
                     Follow
                 </button>
             </form>
+        {% endif %}
+    </div>
+{% endif %}
 
         </div>
 
-        <div class="stats-box">
+<div class="stats-box">
 
-            <div class="stat-item">
-                <h3>120</h3>
-                <p>Following</p>
-            </div>
+            <a href="{% url 'profiles:user_relations' profile.username 'following' %}" style="text-decoration: none; color: inherit;">
+                <div class="stat-item" style="cursor: pointer;">
+                    <h3>{{ following_count }}</h3>
+                    <p>Following</p>
+                </div>
+            </a>
 
             <div class="stat-item">
                 <h3>{{ posts_count }}</h3>
                 <p>Posts</p>
             </div>
 
-            <div class="stat-item">
-                <h3>580</h3>
-                <p>Followers</p>
-            </div>
+            <a href="{% url 'profiles:user_relations' profile.username 'followers' %}" style="text-decoration: none; color: inherit;">
+                <div class="stat-item" style="cursor: pointer;">
+                    <h3>{{ followers_count }}</h3>
+                    <p>Followers</p>
+                </div>
+            </a>
 
         </div>
 
@@ -84,11 +101,7 @@
                                 <img src="{{ post.image.url }}"
                                      alt="Post Image">
                             </div>
-                        {% else %}
-                            <div class="gallery-item">
-                                <img src="{% static 'images/default-post.png' %}"
-                                     alt="Post Image">
-                            </div>
+
                         {% endif %}
 
                     </div>
@@ -102,7 +115,7 @@
                                      class="user-profile-image"
                                      alt="Profile">
                             {% else %}
-                                <img src="{% static 'images/profile_Guest.png' %}"
+                                <img src="/media/profile-Guest.png' %}"
                                      class="user-profile-image"
                                      alt="Profile">
                             {% endif %}

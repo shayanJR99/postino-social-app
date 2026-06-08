@@ -1,12 +1,18 @@
+<<<<<<< HEAD
 @font-face{
     font-family:"Vazir";
     src:url("./fonts/Vazir.woff2") format("woff2");
 }
+=======
+>>>>>>> 78affca5a94fc8c7c8045e694273780e02922e73
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
+<<<<<<< HEAD
     font-family:"Vazir",sans-serif;
+=======
+>>>>>>> 78affca5a94fc8c7c8045e694273780e02922e73
 }
 
 body{

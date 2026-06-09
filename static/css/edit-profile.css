@@ -1,0 +1,326 @@
+@font-face{
+    font-family:"Vazir";
+    src:url("./fonts/Vazir.woff2") format("woff2");
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Vazir",sans-serif;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #0f0c29,
+        #302b63,
+        #24243e
+    );
+}
+
+.edit-profile-card{
+    width:500px;
+    max-width:100%;
+    padding:40px;
+    border-radius:28px;
+    background:rgba(255,255,255,.08);
+    backdrop-filter:blur(25px);
+    -webkit-backdrop-filter:blur(25px);
+    border:1px solid rgba(255,255,255,.15);
+}
+
+.title{
+    text-align:center;
+    color:white;
+    font-size:34px;
+    margin-bottom:10px;
+}
+
+.subtitle{
+    text-align:center;
+    color:rgba(255,255,255,.7);
+    margin-bottom:30px;
+    font-size:14px;
+}
+
+#edit-profile-form{
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+}
+
+.profile-upload-section{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:15px;
+
+    border-radius:18px;
+
+    background:rgba(255,255,255,.05);
+
+    border:1px solid rgba(255,255,255,.12);
+
+    margin-bottom:10px;
+}
+
+.profile-preview{
+    width:110px;
+    height:110px;
+    border-radius:22px;
+    overflow:hidden;
+
+    background:rgba(255,255,255,.08);
+
+    border:2px solid rgba(255,255,255,.15);
+}
+
+.profile-preview img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+}
+
+.upload-btn{
+    width:170px;
+    height:55px;
+
+    border:none;
+    cursor:pointer;
+
+    border-radius:15px;
+
+    color:white;
+    font-size:15px;
+    font-weight:700;
+
+    background:
+    linear-gradient(
+        135deg,
+        #00d4ff,
+        #0066ff
+    );
+
+    transition:.3s;
+}
+
+.upload-btn:hover{
+    scale: 1.04;
+}
+
+.input-text{
+    width:100%;
+
+    height:58px;
+
+    border:none;
+    outline:none;
+
+    padding:0 18px;
+
+    border-radius:16px;
+
+    color:white;
+    font-size:15px;
+
+    background:rgba(255,255,255,.08);
+
+    border:1px solid rgba(255,255,255,.12);
+}
+
+.input-text::placeholder{
+    color:rgba(255,255,255,.55);
+}
+
+.biography{
+    min-height:140px;
+
+    padding:15px 18px;
+
+    resize:none;
+}
+
+.save-btn{
+    width:100%;
+    height:58px;
+
+    border:none;
+    cursor:pointer;
+
+    border-radius:16px;
+
+    color:white;
+    font-size:18px;
+    font-weight:700;
+
+    background:
+    linear-gradient(
+        135deg,
+        #00d4ff,
+        #0066ff
+    );
+
+    transition:.3s;
+}
+
+.save-btn:hover{
+    scale: 1.04;
+}
+
+@media(max-width:768px){
+
+    .edit-profile-card{
+        width:100%;
+        padding:30px;
+    }
+
+    .profile-upload-section{
+        flex-direction:column;
+        gap:20px;
+    }
+
+    .upload-btn{
+        width:100%;
+    }
+}
+
+@media(max-width:480px){
+
+    .edit-profile-card{
+        padding:25px;
+        border-radius:20px;
+    }
+
+    .title{
+        font-size:28px;
+    }
+
+    .profile-preview{
+        width:90px;
+        height:90px;
+    }
+
+    .input-text{
+        height:52px;
+        font-size:14px;
+    }
+
+    .biography{
+        min-height:120px;
+    }
+
+    .save-btn{
+        height:52px;
+        font-size:16px;
+    }
+}
+@media(max-width:768px){
+
+    body{
+        padding:15px;
+    }
+
+    .edit-profile-card{
+        width:100%;
+        max-width:550px;
+        padding:30px;
+    }
+
+    .profile-upload-section{
+        flex-direction:column;
+        gap:20px;
+    }
+
+    .upload-box{
+        width:100%;
+    }
+
+    .upload-btn{
+        width:100%;
+    }
+
+    .title{
+        font-size:30px;
+    }
+}
+
+@media(max-width:480px){
+
+    body{
+        padding:10px;
+    }
+
+    .edit-profile-card{
+        padding:20px;
+        border-radius:20px;
+    }
+
+    .title{
+        font-size:24px;
+    }
+
+    .profile-upload-section{
+        padding:12px;
+    }
+
+    .profile-preview{
+        width:85px;
+        height:85px;
+        border-radius:18px;
+    }
+
+    .input-text{
+        height:50px;
+        font-size:14px;
+    }
+
+    .biography{
+        min-height:100px;
+        padding:12px;
+    }
+
+    .upload-btn{
+        height:50px;
+        font-size:14px;
+    }
+
+    .save-btn{
+        height:50px;
+        font-size:15px;
+    }
+}
+
+@media(max-width:320px){
+
+    .edit-profile-card{
+        padding:15px;
+    }
+
+    .title{
+        font-size:20px;
+    }
+
+    .profile-preview{
+        width:70px;
+        height:70px;
+    }
+
+    .input-text{
+        font-size:13px;
+    }
+
+    .upload-btn,
+    .save-btn{
+        font-size:13px;
+    }
+}

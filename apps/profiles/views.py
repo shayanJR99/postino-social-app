@@ -7,7 +7,10 @@ from django.db import models  # <-- ۱. اضافه شدن این خط برای �
 from apps.accounts.models import Profile
 from apps.posts.models import Post # <-- اضافه شدن مدل پست جهت فیلتر دقیق‌تر
 from .models import Follow
-
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse_lazy
+from django.views.generic import UpdateView
+from .forms import ProfileUpdateForm
 
 # ---------------- تابع کمکی بهینه‌شده ----------------
 def get_profile_social_data(profile):
@@ -56,6 +59,9 @@ class ProfileDetailView(DetailView):
         return context
 
 
+
+
+
 # ---------------- پروفایل من ----------------
 class MyProfileView(DetailView):
     model = Profile
@@ -71,6 +77,16 @@ class MyProfileView(DetailView):
         context.update(get_profile_social_data(profile))
         return context
 
+class ProfileUpdateView(LoginRequiredMixin, UpdateView):
+    model = Profile
+    form_class = ProfileUpdateForm
+    template_name = "profiles/edit-profile.html"
+    success_url = reverse_lazy("profiles:my_profile")
+
+    def get_object(self, queryset=None):
+        # تلاش برای گرفتن پروفایل کاربر؛ اگر نبود، خودکار ساخته می‌شود (get_or_create)
+        profile, created = Profile.objects.get_or_create(user=self.request.user)
+        return profile
 
 # ---------------- ویو یکپارچه فالو / آنفالو (Toggle) ----------------
 @login_required

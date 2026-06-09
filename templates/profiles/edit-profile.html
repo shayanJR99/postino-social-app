@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>postino | Edit Profile</title>
+    <link rel="stylesheet" href="{% static 'css/edit-profile.css' %}">
+</head>
+<body>
+    <div class="edit-profile-card">
+        <h1 class="title">edit profile</h1>
+        <br><br>
+
+        <!-- اضافه شدن enctype برای آپلود عکس و حذف فرم تکراری -->
+        <form id="edit-profile-form" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="profile-upload-section">
+                <div class="profile-preview">
+                    <!-- نمایش عکس فعلی کاربر یا عکس پیش‌فرض -->
+                    <img id="profile-preview-image" src="{% if request.user.profile.image %}{{ request.user.profile.image.url }}{% else %}/media/default-profile.png{% endif %}" alt="profile">
+                </div>
+
+                <div class="upload-box">
+                    <!-- نام اینپوت باید با فیلد مدل (image) یکی باشد -->
+                    <input type="file" name="image" id="profile-upload" accept="image/*" hidden>
+                    <button type="button" id="upload-btn" class="upload-btn">Upload Profile</button>
+                </div>
+            </div>
+
+            <!-- مقداردهی اولیه فیلدها با value و اصلاح نام فیلد دسکریپشن -->
+            <input type="text" name="first_name" class="input-text" placeholder="name" value="{{ form.first_name.value|default_if_none:'' }}">
+            <input type="text" name="last_name" class="input-text" placeholder="Last Name" value="{{ form.last_name.value|default_if_none:'' }}">
+            <input type="text" name="username" class="input-text" placeholder="ID" value="{{ form.username.value|default_if_none:'' }}">
+            
+            <!-- نام این فیلد در مدل شما description است نه biography -->
+            <textarea name="description" class="input-text biography" placeholder="Bio">{{ form.description.value|default_if_none:'' }}</textarea>
+            
+            <button type="submit" class="save-btn">Update Profile</button>
+        </form>
+    </div>
+
+    <script src="{% static 'js/edit-profile.js' %}"></script>
+</body>
+</html>

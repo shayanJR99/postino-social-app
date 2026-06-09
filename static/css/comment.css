@@ -1,0 +1,234 @@
+@font-face{
+    font-family:"Vazir";
+    src:url("./fonts/Vazir.woff2") format("woff2");
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Vazir",sans-serif;
+}
+
+body{
+    min-height:100vh;
+    background:
+    linear-gradient(
+        135deg,
+        #0f0c29,
+        #302b63,
+        #24243e
+    );
+    font-family:sans-serif;
+}
+
+.comment-page{
+    width:100%;
+    max-width:900px;
+    margin:40px auto;
+    padding:20px;
+}
+
+.main-post{
+    margin-bottom:25px;
+}
+
+#posts-container{
+    width:100%;
+    padding:0;
+    display:flex;
+    flex-direction:column;
+    gap:25px;
+}
+
+.post{
+    overflow:hidden;
+    border-radius:28px;
+    background:rgba(255,255,255,.08);
+    backdrop-filter:blur(18px);
+    border:1px solid rgba(255,255,255,.15);
+    color:white;
+    box-shadow:0 15px 40px rgba(0,0,0,.2);
+}
+
+.post-gallery{
+    width:100%;
+}
+
+.gallery-item{
+    width:100%;
+    height:350px;
+    overflow:hidden;
+}
+
+.gallery-item img{
+    width:100%;
+    height:100%;
+    display:block;
+    object-fit:cover;
+}
+
+.post-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px;
+}
+
+.post-user{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.profile-image{
+    width:65px;
+    height:65px;
+    border-radius:50%;
+    object-fit:cover;
+    border:2px solid rgba(255,255,255,.15);
+}
+
+.user-data h3{
+    font-size:20px;
+    margin-bottom:4px;
+}
+
+.user-data span{
+    font-size:14px;
+    color:rgba(255,255,255,.55);
+}
+
+.username-link{
+    text-decoration:none;
+    color:white;
+}
+
+.follow-btn{
+    border:none;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    padding:12px 20px;
+    border-radius:14px;
+    color:white;
+    font-weight:700;
+    background:
+    linear-gradient(
+        135deg,
+        #7c4dff,
+        #448aff
+    );
+}
+
+.follow-count{
+    opacity:.8;
+    font-size:13px;
+}
+
+.post-content{
+    padding:0 20px 20px;
+}
+
+.post-content p{
+    padding:18px;
+    border-radius:18px;
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.08);
+    line-height:1.8;
+}
+
+.comment-form{
+    padding:18px;
+    margin-bottom:25px;
+    border-radius:25px;
+    background:rgba(255,255,255,.08);
+    backdrop-filter:blur(18px);
+    border:1px solid rgba(255,255,255,.15);
+}
+
+.comment-form form{
+    display:flex;
+    gap:12px;
+    align-items:center;
+}
+
+.comment-form textarea{
+    flex:1;
+    height:70px;
+    resize:none;
+    border:none;
+    outline:none;
+    border-radius:15px;
+    padding:15px;
+    background:rgba(255,255,255,.05);
+    color:white;
+}
+
+.comment-form textarea::placeholder{
+    color:rgba(255,255,255,.5);
+}
+
+.comment-form button{
+    width:120px;
+    height:70px;
+    border:none;
+    border-radius:15px;
+    cursor:pointer;
+    color:white;
+    font-weight:700;
+    background:
+    linear-gradient(
+        135deg,
+        #7c4dff,
+        #448aff
+    );
+}
+
+.comment-card{
+    padding:20px;
+    border-radius:25px;
+    background:rgba(255,255,255,.08);
+    backdrop-filter:blur(18px);
+    border:1px solid rgba(255,255,255,.15);
+    color:white;
+}
+
+.comment-header{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    margin-bottom:18px;
+}
+
+.comment-avatar{
+    width:60px;
+    height:60px;
+}
+
+.img-comment{
+    width:60px;
+    height:60px;
+    border-radius:50%;
+    object-fit:cover;
+}
+
+.comment-user h4{
+    font-size:18px;
+    margin-bottom:4px;
+}
+
+.comment-user span{
+    color:rgba(255,255,255,.55);
+    font-size:14px;
+}
+
+.comment-text{
+    padding:18px;
+    border-radius:18px;
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.08);
+    line-height:1.8;
+    direction:rtl;
+}

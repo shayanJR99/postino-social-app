@@ -96,14 +96,12 @@
 {% endif %}
 
             <!-- COMMENT -->
-            <form method="post" action="#">
-                {% csrf_token %}
-                <button type="submit" class="action-btn">
-                    <img src="/media/comment.png" class="action-icon" alt="comment">
-                    <span>42</span>
-                </button>
-            </form>
-
+<a href="{% url 'posts:post_comments' post.id %}" class="action-btn-link" style="text-decoration: none;">
+    <button type="button" class="action-btn">
+        <img src="/media/comment.png" class="action-icon" alt="comment">
+        <span>{{ post.comments.count }}</span>
+    </button>
+</a>
             <!-- DETAILS -->
             <form method="get" action="{% url 'posts:detail' post.pk %}">
                 <button type="submit" class="action-btn">

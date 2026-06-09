@@ -38,6 +38,35 @@ Created :
 </div>
 <div class="buttons">
 </form>
+            <!-- LIKE -->
+{% if request.user.profile in post.likes.all %}
+<form method="post" action="{% url 'posts:unlike' post.id %}">
+    {% csrf_token %}
+    <button type="submit" class="action-btn">
+        <img src="/media/like.png" class="action-icon" alt="like">
+        <span>{{ post.likes.count }}</span>
+    </button>
+</form>
+
+{% else %}
+
+<form method="post" action="{% url 'posts:like' post.id %}">
+    {% csrf_token %}
+    <button type="submit" class="action-btn">
+        <img src="/media/like.png" class="action-icon" alt="like">
+        <span>{{ post.likes.count }}</span>
+    </button>
+</form>
+
+{% endif %}
+
+            <!-- COMMENT -->
+<a href="{% url 'posts:post_comments' post.id %}" class="action-btn-link" style="text-decoration: none;">
+    <button type="button" class="action-btn">
+        <img src="/media/comment.png" class="action-icon" alt="comment">
+        <span>{{ post.comments.count }}</span>
+    </button>
+</a>
 </div>
 </div>
 </div>
